@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h3>v-if</h3>
+    <h3 v-if="isShow">这里是显示正常的信息</h3>
+    <h3 v-else>不允许显示了</h3>
+
+    <!-- v-if是通过display:none来控制显示和隐藏的,加载和不加载节点 -->
+    <!-- v-show是通过元素展示与否,都会加载 -->
+
+    <h3>v-show</h3>
+    <h3 v-show="isShow"> isShow {{ isShow }} </h3>
+    <h3 v-show="!isShow">isShow {{ isShow }}</h3>
+
+    <button @click="handleToggle">切换</button>
+  </div>
+
+  <script type="module">
+    import { createApp, ref } from '../vue.esm-browser.js'
+
+    createApp({
+      setup() {
+        let isShow = ref(true)
+
+        const handleToggle = () => {
+          isShow.value =!isShow.value
+        }
+
+        return { isShow, handleToggle }
+      },
+    }).mount('#app')
+  </script>
+</body>
+</html>

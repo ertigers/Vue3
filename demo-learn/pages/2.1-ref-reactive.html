@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h3>{{ count }} </h3>
+    <h4>{{ person.name }}</h4>
+    <h4>{{ person.age }}</h4>
+    <h4>{{ person.address.country }} - {{ person.address.city }}</h4>
+  </div>
+
+  <script type="module">
+    import { createApp, ref, reactive } from '../vue.esm-browser.js'
+
+    createApp({
+      setup() {
+        const count = ref(0)   // 定义一个 ref 类型的变量,数字,布尔值,字符串
+        const person = reactive({   // 定义一个 reactive 类型的变量,对象,数组
+          name: '宜虎',
+          age: 26,
+          address: {
+            city:'shanghai',
+            country: 'china'
+          }
+        })
+
+        addcount = () => {  // ref的值修改,需要加个.value
+          count.value++
+        }
+
+        return { count, person, addcount }
+      },
+    }).mount('#app')
+  </script>
+  
+</body>
+</html>

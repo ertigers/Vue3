@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h4>{{ person.name }}</h4>
+    <h4>{{ person.age }}</h4>
+    <h4>{{ person.address.country }} - {{ person.address.city }}</h4>
+
+    <button v-on:click="addAge">修改年龄+1</button>
+    <button @click="addAge">修改年龄+1</button>
+
+    <h5>回车修改年龄+1</h5> 
+    <input type="text" @keyup.enter="addAge">
+    <h5>空格修改年龄+1</h5> 
+    <input type="text" @keyup.space="addAge">
+    <h5>a键修改年龄+1</h5> 
+    <input type="text" @keyup.a="addAge">
+    <h5>tab键修改年龄+1</h5> 
+    <input type="text" @keydown="addAge">
+  </div>
+
+  <script type="module">
+    import { createApp, reactive } from '../vue.esm-browser.js'
+
+    createApp({
+      setup() {
+        const person = reactive({
+          name: '宜虎',
+          age: 26,
+          address: {
+            city:'shanghai',
+            country: 'china'
+          }
+        })
+
+        const addAge = () => {
+          person.age++
+        }
+
+        return { person, addAge }
+      },
+    }).mount('#app')
+  </script>
+  
+</body>
+</html>
